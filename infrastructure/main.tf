@@ -6,8 +6,8 @@ locals {
   env_content     = <<-EOF
     CADDY_HOST='${local.hostname}'
     DB_PASSWORD='${random_password.db-password.result}'
-    FRONTEND_IMAGE='ghcr.io/baksetercx/cv-workshop/frontend:latest'
-    BACKEND_IMAGE='ghcr.io/baksetercx/cv-workshop/backend:latest'
+    FRONTEND_IMAGE='ghcr.io/wanderingduc/cv-workshop/frontend:latest'
+    BACKEND_IMAGE='ghcr.io/wanderingduc/cv-workshop/backend:latest'
   EOF
 }
 
