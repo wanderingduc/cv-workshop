@@ -1,4 +1,5 @@
 ﻿using backend.Data.Mappers;
+using backend.Data.Models;
 using backend.Data.Requests;
 using backend.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -29,10 +30,13 @@ public static class UserEndpoints
         // Retrieve all cvs that include any of the wanted skills
         app.MapPost(
                 "/users/skills",
-                async () =>
+                async (ICvService cvService, SkillRequest skillRequest) =>
                 {
                     // TODO: Oppgave 4
-                    return Results.Ok();
+
+                    var users = await cvService.GetUsersWithDesiredSkills(skillRequest.WantedSkills);
+                    var userDtos = users.Select(u => u.ToDto()).ToList();
+                    return Results.Ok(userDtos);
                 }
             )
             .WithName("GetUsersWithDesiredSkill")
