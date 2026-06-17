@@ -1,7 +1,6 @@
 ﻿using backend.Data;
 using backend.Data.Mappers;
 using backend.Data.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace backend.Services;
 
@@ -34,5 +33,16 @@ public class CvService(AppDbContext context) : ICvService
         return [];
     }
 
+    public async Task<User?> GetUserByIdAsync(Guid id) {
+        var user = await context.Users.FindAsync(id);
+        if (user == null)
+        {
+            return null;
+        }
+        return user;
+    }
+
+
     // TODO: Oppgave 4 ny metode (husk å legge den til i interfacet)
+
 }

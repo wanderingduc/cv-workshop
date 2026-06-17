@@ -37,5 +37,21 @@ public static class UserEndpoints
             )
             .WithName("GetUsersWithDesiredSkill")
             .WithTags("Users");
+
+        app.MapGet(
+            "/users/{id}",
+            async (ICvService cvService, Guid id) => {
+                var user = await cvService.GetUserByIdAsync(id);
+                if (user == null)
+                {
+                    return Results.NotFound("User does not exist");
+                }
+                var userDto = user.ToDto();
+                return Results.Ok(userDto);
+            }
+        )
+        .WithName("GetUserById")
+        .WithTags("User");
+
     }
 }
