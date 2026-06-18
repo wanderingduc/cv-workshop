@@ -3,6 +3,8 @@ import styles from "./ExperienceCard.module.css";
 import akersgataImage from "../../assets/akersgata.jpg";
 import { CxIcon } from "@computas/designsystem/icon/react";
 import { ExperienceChip } from "./ExperienceChip";
+import { useState } from "react";
+import { PopupModal } from "../popupModal/PopupModal";
 
 interface ExperienceCardProps {
   experience: Experience;
@@ -16,8 +18,16 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
     return `${month.charAt(0).toUpperCase() + month.slice(1)} ${year}`;
   }
 
+  const closeModal = () => setShowModal(false);
+
+  const openModal = () => setShowModal(true);
+
+  const [showModal, setShowModal] = useState(false);
+
   return (
-    <div className={styles.container}>
+    <>
+    <PopupModal open={showModal} title={experience.title} desc={experience.description} onCloseHandler={closeModal}/>
+    <div className={styles.container} onClick={openModal}>
       <img
         className={styles.image}
         src={experience.imageUrl || akersgataImage}
@@ -40,5 +50,6 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
         <p className={styles.eventTitle}>{experience.title}</p>
       </div>
     </div>
+    </>
   );
 }

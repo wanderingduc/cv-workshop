@@ -42,6 +42,12 @@
   margin-bottom: var(--cx-spacing-2);
 }
 
+.contentContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
 @media screen and (max-width: 576px) {
   .modal {
     width: 100%;

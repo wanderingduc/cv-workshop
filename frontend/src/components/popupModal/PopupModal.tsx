@@ -5,6 +5,7 @@ import { CxIcon } from "@computas/designsystem/icon/react";
 interface Props {
   open: boolean;
   title: string;
+  desc: string;
   onCloseHandler: () => void;
   children?: ReactNode;
 }
@@ -12,6 +13,7 @@ interface Props {
 export const PopupModal = ({
   open,
   title,
+  desc,
   onCloseHandler,
   children,
 }: Props) => {
@@ -36,7 +38,10 @@ export const PopupModal = ({
         onClick={(event) => event.stopPropagation()}
       >
         <div className={styles.topContainer}>
+          <div className={styles.contentContainer}>
           <h1 className="cx-title-4">{title}</h1>
+          <p>{desc}</p>
+          </div>
           <button
             className="cx-btn__tertiary cx-btn__icon"
             onClick={onCloseHandler}
