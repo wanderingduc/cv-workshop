@@ -59,5 +59,17 @@ public static class ExperienceEndpoints
             )
             .WithName("GetExperiencesByType")
             .WithTags("Experiences");
+
+        app.MapGet(
+            "/experiences/user/{userid}",
+             async (Guid userid, ICvService cvService) =>
+             {
+                 var exps = await cvService.GetExperiencesByUserIdAsync(userid);
+                 var expDtos = exps.Select(e => e.ToDto()).ToList();
+                 return Results.Ok(expDtos);
+             }
+        )
+        .WithName("GetExperienceByUserIdAsync")
+        .WithTags("Experiences");
     }
 }

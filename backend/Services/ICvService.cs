@@ -18,4 +18,5 @@ public interface ICvService
     Task<IEnumerable<Experience>> GetExperiencesByTypeAsync(string type);
     Task<IEnumerable<User>> GetUsersWithDesiredSkills(IEnumerable<String> DesiredTechnologies);
 
+    Task<IEnumerable<Experience>> GetExperiencesByUserIdAsync(Guid userid);
 }

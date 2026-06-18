@@ -46,5 +46,11 @@ public class CvService(AppDbContext context) : ICvService
         desiredTechnologies.Any(technology => u.Skills.Contains(technology)))
         .ToListAsync();
     }
+    
+
+    public async Task<IEnumerable<Experience>> GetExperiencesByUserIdAsync(Guid userid)
+    {
+        return await context.Experiences.Where(e => e.UserId == userid).ToListAsync();
+    }
 
 }
